@@ -1,2 +1,2 @@
 all:
-	docker build -t="zhongpei/rsync" .
+	docker build -t="zhongpei/rsyncd" .
