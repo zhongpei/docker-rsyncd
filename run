@@ -19,6 +19,16 @@ log file = /dev/stdout
     read only = false
     path = ${VOLUME}
     comment = docker volume
+
+[auth]
+    path = ${VOLUME} 
+    max connections = 15
+    read only = false
+    ignore errors = yes
+    timeout = 120
+    auth users = ${USERNAME}
+    secrets file = /etc/rsyncd.passwd
+
 EOF
 
 exec /usr/bin/rsync --no-detach --daemon --config /etc/rsyncd.conf "$@"
