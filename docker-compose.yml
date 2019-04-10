@@ -1,8 +1,10 @@
 rsyncd:
-    image: zhongpei/rsyncd
+    image: zhongpei/rsyncd:2
     volumes:
        - ./logs:/data
+       - ./.rsyncd.passwd:/etc/rsyncd.passwd
     env_file: ./.rsyncd.env
+    
     ports:
         - "873:873"
     restart: always
