@@ -5,6 +5,8 @@ OWNER=${OWNER:-nobody}
 GROUP=${GROUP:-nogroup}
 
 chown "${OWNER}:${GROUP}" "${VOLUME}"
+chown root /etc/rsyncd.passwd
+chmod 600 /etc/rsyncd.passwd
 
 [ -f /etc/rsyncd.conf ] || cat <<EOF > /etc/rsyncd.conf
 uid = ${OWNER}
@@ -23,7 +25,8 @@ log file = /dev/stdout
 [auth]
     path = ${VOLUME} 
     max connections = 15
-    read only = false
+    write only = yes
+    list = no    
     ignore errors = yes
     timeout = 120
     auth users = ${USERNAME}
